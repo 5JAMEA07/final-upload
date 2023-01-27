@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('common/head'); -%>
+  </head>
+
+  <style>
+    @media screen and (max-width: 749px) {
+      .main-menu ul > li a {
+        font-size: 10px;
+      }
+    }
+    .search {
+      width: 500px;
+      height: 40px;
+      margin: auto;
+      background: #444;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+      border: 1px solid #fff;
+    }
+
+    .search input {
+      width: 370px;
+      padding: 10px 5px;
+      float: left;
+      color: white;
+      border: 0;
+      background: transparent;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .search input:focus {
+      outline: 0;
+      background: transparent;
+    }
+
+    .search button {
+      position: relative;
+      float: right;
+      border: 0;
+      padding: 0;
+      cursor: pointer;
+      height: 40px;
+      width: 120px;
+      color: #fff;
+      background: transparent;
+      border-left: 1px solid #fff;
+      border-radius: 0 3px 3px 0;
+    }
+    .search button:hover {
+      background: #fff;
+      color: #444;
+    }
+    .search button:active {
+      box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
+    }
+    .search button:focus {
+      outline: 0;
+    }
+  </style>
+
+  <body class="main-layout contineer_page">
+    <!-- loader  -->
+
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+      <!-- header inner -->
+
+      <%- include('common/header'); -%>
+      <!-- end header inner -->
+
+      <!-- end header -->
+    </header>
+
+    <div class="backgro_mh">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="heding">
+              <h2>Songs</h2>
+              <form class="search" action="searchResult.jsp" method="post">
+                <input
+                  type="search"
+                  placeholder="Search here..."
+                  name="search"
+                  required
+                />
+                <button type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gallery" class="Gallery">
+      <div class="container">
+        <div class="row display_boxflex">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+            <div class="row">
+              <% for(let song of songs) {%>
+              <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 margi_bott">
+                <div class="Gallery_img">
+                  <figure><img src="images/gallery1.jpg" alt="#" /></figure>
+                </div>
+                <div class="hover_box">
+                  <ul class="icon_hu">
+                    <h3>Title: <%= song.title%></h3>
+                    <h3>Artiste: <%= song.artist%></h3>
+                    <h3>Number of sales: <%= song.no_of_sales%></h3>
+                    <h3>Quantity: <%= song.quantity%></h3>
+                    <h3>Price: £<%= song.price%></h3>
+                    <% if(user) { %>
+                    <form method="post" action="cart.jsp">
+                      <input
+                        type="hidden"
+                        name="songId"
+                        value="<%=s._id%>"
+                      />
+                      <input
+                        type="hidden"
+                        name="title"
+                        value="<%=song.title%>"
+                      />
+                      <input
+                        type="hidden"
+                        name="artist"
+                        value="<%=song.artist%>"
+                      />
+                      <input
+                        type="hidden"
+                        name="numberOfSales"
+                        value="<%=song.no_of_sales%>"
+                      />
+                      <input
+                        type="hidden"
+                        name="quantity"
+                        value="<%=song.quantity%>"
+                      />
+                      <input
+                        type="hidden"
+                        name="price"
+                        value="<%=song.price%>"
+                      />
+                      <input
+                        class="btn btn-primary"
+                        type="submit"
+                        value="Add to cart"
+                      />
+                    </form>
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+              <%}%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- end Gallery -->
+
+    <!--  footer -->
+    <%- include('common/footer'); -%>
+    <!-- end footer -->
+  </body>
+</html>
