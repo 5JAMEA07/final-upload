@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js -e js,ejs"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seedProduction": "cross-env NODE_ENV=production node seeder.js",
+    "seed": "node seeder.js"
   },
   "author": "Abraham James",
   "license": "ISC",
