@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(expressSession({ secret: advassessment, cookie: { expires: new Date(253402300000000) } }))
+app.use(expressSession({ secret: 'advassessment', cookie: { expires: new Date(253402300000000) } }))
 
 global.user = false;
 
